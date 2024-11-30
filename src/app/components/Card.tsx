@@ -13,9 +13,9 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ card }) => {
   return (
     <>
-        <div className="card">
+        <div key={card.id} className="card">
             <Image
-                src={card.image}
+                src={card.image  || '/productBlurIcon.svg'}
                 width={262}
                 height={262}
                 className='card__image'
@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({ card }) => {
             </Image>
             <div className="card__content">
                 <div className="card__option">
-                    <h4 className='card__title'>{card.title}</h4>
+                    <h4 className='card__title'><b>{card.title}</b></h4>
                     <p className='card__weight'>{card.weight} г</p>
                 </div>
                 <p className='card__description'>{card.description}</p>
