@@ -1,11 +1,10 @@
 "use client"
 
-import './../styles.scss';
-import './../styles/components/_header.scss';
+import './styles.scss';
 import Image from "next/image";
-import Button from "./Button";
 import Link from "next/link";
 import React from 'react';
+import Button from '../button/Button';
 
 
 export default function Header() {

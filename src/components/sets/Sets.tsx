@@ -1,11 +1,11 @@
 "use client"
 
 import React, {useCallback, useEffect, useState} from 'react';
-import './../styles/components/_sets.scss';
-import Card from './Card';
-import ICard from '../interfaces/ICard';
-import sushiApi from './../services/sushiApi';
-import Button from './Button';
+import './styles.scss';
+import Card from "./../card/Card";
+import ICard from './../sets/ICard';
+import sushiApi from './../../services/sushiApi';
+import Button from './../button/Button';
 
 interface SetsProps {
     titleMain: string;
@@ -32,7 +32,7 @@ const Sets: React.FC<SetsProps> = ({ titleMain }) => {
     }
 
     useEffect(() => {
-        fetchSets()
+        fetchSets();
     }, [currentPage]);
 
     return (
@@ -44,7 +44,7 @@ const Sets: React.FC<SetsProps> = ({ titleMain }) => {
                         {errorSets ? // Проверка на ошибки запроса fetchSets()
                             <h3>{errorSets.toString()}</h3>
                             :
-                            <div>
+                            <>
                                 <div className="sets__container">
                                     {sets.map((set) => (
                                         <Card key={set.id} card={set}/>
@@ -53,7 +53,7 @@ const Sets: React.FC<SetsProps> = ({ titleMain }) => {
                                 <div className="sets__more">
                                     <Button onClick={nextPage} style="button button__login">Ещё</Button>
                                 </div>
-                            </div>
+                            </>
                         }
                     </div>
                 </div>

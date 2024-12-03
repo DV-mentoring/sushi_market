@@ -1,8 +1,8 @@
 import React from 'react'
-import './../styles/components/_card.scss';
-import Button from './Button'
+import './styles.scss';
 import Image from 'next/image';
-import ICard from '../interfaces/ICard';
+import ICard from '../sets/ICard';
+import Button from '../button/Button';
 
 
 interface CardProps {

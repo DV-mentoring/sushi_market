@@ -1,4 +1,4 @@
-@import './../../styles';
+@import '../../app/styles';
 
 .footer {
     padding: 80px 0px;
@@ -24,14 +24,14 @@
         @include desktop {
             display: flex;
             flex-direction: column;
-            padding: 10px 0;
+            padding: 10px 0px;
         }
     }
 
     &__logo {
         display: flex;
         flex-direction: column;
-        gap: 10;
+        gap: 10px;
 
         @include desktop {
             margin-bottom: 10px;
@@ -82,11 +82,11 @@
     }
 
     &__adress {
-        padding: 20px 0;
+        padding: 20px 0px;
     }
 
     &__copy {
-        padding: 20px 0;
+        padding: 20px 0px;
     }
 
 }
