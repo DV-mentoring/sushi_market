@@ -20,4 +20,8 @@
             fill: black;
         }
     }
+
+    &.all-clear {
+        color: var(--color-accent);
+    }
 }

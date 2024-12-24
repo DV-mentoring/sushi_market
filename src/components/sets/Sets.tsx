@@ -27,7 +27,9 @@ export const Sets: React.FC<SetsProps> = ({ titleMain }) => {
     const fetchSets = useCallback(async () => {
         try {
             const data = await sushiApi.getSushiSets(currentPage, PAGE_LIMIT);
-            setSets((prevSets) => [...prevSets, ...data]);
+            setSets((prevSets) =>
+                currentPage === 1 ? data : [...prevSets, ...data]
+            );
             setIsLoading(false);
         } catch (error) {
             setErrorSets(String(error));
@@ -40,7 +42,7 @@ export const Sets: React.FC<SetsProps> = ({ titleMain }) => {
 
     useEffect(() => {
         fetchSets();
-    }, [currentPage]);
+    }, []);
 
     return (
         <Section>

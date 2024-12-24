@@ -1,19 +1,18 @@
 import "./styles.scss";
 import React, { useEffect } from "react";
-import { db } from "@/services/db";
+import { db, Order } from "@/services/db";
 
 interface ButtonProps {
     children?: React.ReactNode;
-    keyCard: number;
+    Order: Order;
 }
 
 export const ButtonAddCard = ({
     children,
-    keyCard,
+    Order,
 }: ButtonProps): React.JSX.Element => {
     const [status, setStatus] = React.useState("");
     const [count, setCount] = React.useState(1);
-    const [key, setKey] = React.useState(0);
     const [id, setId] = React.useState(0);
 
     const DeleteOrder = async (): Promise<void> => {
@@ -29,10 +28,14 @@ export const ButtonAddCard = ({
     const AddOrder = async () => {
         try {
             const newId = await db.orders.add({
-                key,
+                name: Order.name,
+                weight: Order.weight,
+                key: Order.key,
                 count: 1,
+                price: Order.price,
             });
-            setId(newId);
+
+            if (newId !== undefined) setId(newId);
         } catch (error) {
             setStatus(`Error ${error}`);
         }
@@ -51,8 +54,11 @@ export const ButtonAddCard = ({
     };
 
     const handleOrderMinus = () => {
-        if (count <= 1) DeleteOrder();
-        else {
+        if (count <= 1) {
+            const newOrderCount = count - 1;
+            setCount(newOrderCount);
+            DeleteOrder();
+        } else {
             const newOrderCount = count - 1;
             setCount(newOrderCount);
             EditOrder(newOrderCount);
@@ -68,10 +74,11 @@ export const ButtonAddCard = ({
 
     const GetStateButton = async () => {
         try {
-            const res = await db.orders.where("key").equals(keyCard).first();
-            if (res?.key === keyCard) {
+            const res = await db.orders.where("key").equals(Order.key).first();
+            if (res?.key === Order.key) {
                 setCount(res.count);
-                setId(res.id);
+                if (res.id !== undefined) setId(res.id);
+                else setStatus("Status res.id undefined");
             } else setCount(0);
         } catch (error) {
             setStatus(`Error ${error}`);
@@ -84,10 +91,9 @@ export const ButtonAddCard = ({
 
     useEffect(() => {
         setCount(count);
-        setKey(keyCard);
-    }, [keyCard, count]);
+    }, [Order.key, count]);
 
-    return count ? (
+    return count !== 0 ? (
         <div className="counter-order">
             <button className="button-counter" onClick={handleOrderMinus}>
                 -

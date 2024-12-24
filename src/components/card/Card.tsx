@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ICard } from "@/components/sets/ICard";
 import { ButtonAddCard } from "@/components/buttons/button-add-card/ButtonAddCard";
 import { withButton } from "@/components/buttons/HOC/withButton";
+import { Order } from "@/services/db";
 
 interface CardProps {
     card: ICard;
@@ -12,6 +13,13 @@ interface CardProps {
 export const Card: React.FC<CardProps> = ({ card }) => {
     const [src, setSrc] = React.useState(card.image || "/productBlurIcon.png");
     const ButtonAddCardExtended = withButton(ButtonAddCard);
+    const OrderProp: Order = {
+        name: card.title,
+        weight: card.weight,
+        key: card.id,
+        count: 1,
+        price: card.price,
+    };
 
     return (
         <div key={card.id} className="card">
@@ -35,7 +43,7 @@ export const Card: React.FC<CardProps> = ({ card }) => {
                     <h3 className="card__price">
                         <b>{card.price} ₸</b>
                     </h3>
-                    <ButtonAddCardExtended keyCard={card.id}>
+                    <ButtonAddCardExtended Order={OrderProp}>
                         В корзину
                     </ButtonAddCardExtended>
                 </div>

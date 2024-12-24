@@ -3,7 +3,7 @@ import "./styles.scss";
 
 type WrappedButtonProps = {
     onClick?: () => void;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 };
 
 export const withButton = <P extends object>(

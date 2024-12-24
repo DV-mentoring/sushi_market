@@ -7,19 +7,32 @@
     width: 626px;
     display: flex;
     flex-direction: column;
-    padding: 60px 0px;
+    padding: 40px 0px;
 }
 .cart__title {
     padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 .cart__item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0px;
+    padding: 10px 0px;
 }
 .cart__item img {
     border-radius: var(--border-radius-small);
+}
+.cart__price {
+    width: 80px;
+}
+.cart__text {
+    width: 200px;
+}
+.cart__text h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .order-details {

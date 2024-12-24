@@ -16,5 +16,8 @@
 .button__trash img {
     fill: black;
 }
+.button.all-clear {
+    color: var(--color-accent);
+}
 
 /*# sourceMappingURL=styles.css.map */

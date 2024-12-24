@@ -25,12 +25,14 @@ export const Header = () => {
             <div className="header">
                 <div className="header__container">
                     <div className="header__logo">
-                        <Image
-                            src="/logo.svg"
-                            width={178}
-                            height={56}
-                            alt="logo"
-                        />
+                        <Link href="/">
+                            <Image
+                                src="/logo.svg"
+                                width={178}
+                                height={56}
+                                alt="logo"
+                            />
+                        </Link>
                     </div>
                     <div className="header__location">
                         <h3>
